@@ -32,6 +32,9 @@ nepal-latest.pbf:
 dominica-latest.pbf:
 	curl -o $@ 'http://download.openstreetmap.fr/extracts/central-america/country-latest.osm.pbf'
 
+slovenia-latest.pbf: 
+	curl -o $@ 'http://download.geofabrik.de/europe/slovenia-latest.osm.pbf'
+
 country-latest.pbf: $(COUNTRY)-latest.pbf
 	cp $< $@
 
@@ -116,7 +119,6 @@ villages.pbf: country-latest.pbf
 placenames.pbf: country-latest.pbf
 	osmosis --read-pbf-fast file="$<" --nkv keyValueList="place.city,place.hamlet,place.neighborhood,place.neighbourhood,place.village" --tf reject-ways --tf reject-relations --write-pbf file="$@"
 
-
 all_roads.pbf: country-latest.pbf
 	osmosis --read-pbf-fast file="$<" --wkv keyValueList="highway.unclassified,highway.tertiary,highway.residential,highway.service,highway.secondary,highway.track,highway.footway,highway.path,highway.classified,highway.primary,highway.trunk,highway.motorway,highway.construction,highway.proposed,highway.cycleway,highway.living_street,highway.steps,highway.road,highway.pedestrian,highway.construction,highway.bridleway,highway.platformhighway.proposed" --used-node --write-pbf file="$@"
 
@@ -177,6 +179,10 @@ ifeq ($(COUNTRY), ecuador)
 endif
 
 ifeq ($(COUNTRY), bangladesh)
+ SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql riverbanks.sql lakes.sql farms.sql forest.sql grassland.sql military.sql orchards.sql residential.sql cities.sql hamlets.sql neighborhoods.sql villages.sql placenames.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql
+endif
+
+ifeq ($(COUNTRY), slovenia)
  SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql riverbanks.sql lakes.sql farms.sql forest.sql grassland.sql military.sql orchards.sql residential.sql cities.sql hamlets.sql neighborhoods.sql villages.sql placenames.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql
 endif
 
