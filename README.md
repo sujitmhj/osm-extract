@@ -22,10 +22,13 @@ Other
 
 Myanmar
 -------
-mkdir -p /var/www/myanmar/data
-su - postgres
-createdb myanmar_osm
-psql myanmar_osm
-CREATE EXTENSION postgis;
-CREATE EXTENSION hstore;
-make all COUNTRY=myanmar
+
+To build the Myanmar datasets use the following commands::
+
+    mkdir -p /var/www/myanmar/data
+    su - postgres
+    createdb myanmar_osm
+    psql myanmar_osm
+    CREATE EXTENSION postgis;
+    CREATE EXTENSION hstore;
+    make all COUNTRY=myanmar
