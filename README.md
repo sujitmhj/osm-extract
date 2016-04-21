@@ -12,8 +12,10 @@ Installation instructions
 
 Running
 -------
+
+To build all the datasets use the following command::
  
- * make all
+    make all
 
 Other
 -----
