@@ -1,5 +1,6 @@
 import os
 from distutils.core import setup
+from setuptools import setup, find_packages
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
@@ -19,7 +20,12 @@ setup(
     license="BSD",
     keywords="openstreetmap osm",
     url='https://github.com/terranodo/osm-extract',
-    packages=['osm_extract',],
+    packages=find_packages(),
+    install_requires=[
+        'django==1.8.12',
+        'celery==3.1.19',
+        'django-celery',
+    ],
     include_package_data=True,
     zip_safe=False,
 )
