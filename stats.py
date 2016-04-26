@@ -17,22 +17,23 @@ def sizeof_fmt(num, suffix='B'):
     return "%.1f%s%s" % (num, 'Yi', suffix)
 
 @click.command()
-@click.option('--names', help='Filenames.')
-def stats(names):
+@click.option('--files', help='Filenames.')
+@click.option('--name', help='Project Name.')
+def stats(name, files):
     """Simple program that generates stats for OSM exports"""
-    names = names.split(" ")
+    files = files.split(" ")
     data = {}
 
     out = "<ul>"
-    for table in sorted(names):
+    for table in sorted(files):
         
         out = out + "<li><span class='name'>%s</span> " % table.title().replace("_", " ")
         files = {}
         for extention in extentions:
-            filename = "%s.%s" % (table, extention)
+            filename = "%s/%s.%s" % (name, table, extention)
             size = os.path.getsize(filename)
             date = time.ctime(os.path.getmtime(filename))
-            download = 'data/%s' % filename
+            download = '%s' % filename.replace(name + '/', '')
             files[extention] = ('data/%s' % filename, size, date)
             out = out + "<div class='box'>|    <a href='%s'>%s</a> <span class='size'>%s</span></div>" % (download, extention.upper(), sizeof_fmt(size))
         
