@@ -178,7 +178,17 @@ KML_EXPORTS = $(SQL_EXPORTS:.sql=.kml)
 	psql -f conf/$(basename $@)_alter.sql $(DB)
 	psql -f conf/clean.sql -q $(DB)
 
-all: $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(KML_EXPORTS) stats.js
+.PHONY: createdb
+createdb:
+	if psql -lqt | cut -d \| -f 1 | grep -w $(DB); then \
+		echo "Database exists"; \
+	else \
+		createdb $(DB); \
+		psql -d $(DB) -c 'create extension postgis;'; \
+		psql -d $(DB) -c 'create extension hstore;'; \
+	fi
+
+all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(KML_EXPORTS) stats.js
 	cp index.html $(NAME)/
 	sed -i .bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
 	rm $(NAME)/index.html.bk
@@ -201,4 +211,6 @@ clean:
 	rm -rf $(NAME)/*.kml
 	rm -rf $(NAME)/*.cpg
 	rm -rf $(NAME)/stats.js
-	psql -f conf/clean.sql -q $(DB)
+	if psql -lqt | cut -d \| -f 1 | grep -w $(DB); then \
+		psql -f conf/clean.sql -q $(DB); \
+	fi
