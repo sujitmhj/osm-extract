@@ -23,7 +23,12 @@ mk-work-dir:
 	mkdir -p ./$(NAME)
 
 latest.pbf: mk-work-dir
-	curl -o $(NAME)/$@ $(URL)
+	curl -g -o $(NAME)/$@.temp $(URL)
+	if file $(NAME)/$@.temp | grep XML; then \
+        osmosis --read-xml file="$(NAME)/$@.temp" --write-pbf file="$(NAME)/$@"; \
+    else \
+        mv $(NAME)/$@.temp $(NAME)/$@; \
+    fi    
 
 buildings.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "building=*"  --write-pbf file="$(NAME)/$@"
