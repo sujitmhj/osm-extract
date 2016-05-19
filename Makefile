@@ -193,7 +193,7 @@ createdb:
 		psql -d $(DB) -c 'create extension hstore;'; \
 	fi
 
-all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(KML_EXPORTS) stats.js
+all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(KML_EXPORTS) stats.js mapproxy
 	cp index.html $(NAME)/
 	sed -i .bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
 	rm $(NAME)/index.html.bk
@@ -202,6 +202,13 @@ postgis: $(POSTGIS_EXPORTS)
 
 stats.js: 
 	python stats.py --name="$(NAME)" --files="$(EXPORTS)" >> $(NAME)/$@
+
+.PHONY:
+mapproxy:
+	cp mapnik.xml $(NAME)/
+	cp mapproxy.yaml $(NAME)/
+	sed -i .bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapnik.xml
+	sed -i .bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapproxy.yaml
 
 .PHONY: clean
 clean:
