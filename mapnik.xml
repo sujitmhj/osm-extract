@@ -1,0 +1,392 @@
+<Map>
+    <Style name="simple_point_style">
+        <Rule>
+            <PointSymbolizer file= "/Users/jj0hns0n/projects/nga-dev/osm-extract/dot.png" type="png" width="9" height="9" />
+        </Rule>
+    </Style>
+    <Style name="simple_line_style">
+        <Rule>
+            <LineSymbolizer>
+                <CssParameter name="stroke">#999</CssParameter>
+                <CssParameter name="stroke-width">1</CssParameter>
+            </LineSymbolizer>
+        </Rule>
+    </Style>
+    <Style name="simple_polygon_style">
+        <Rule>
+            <PolygonSymbolizer/>
+        </Rule>
+    </Style>
+    <Layer name="aerodromes_point" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">aerodromes_point</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="aerodromes_polygon" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">aerodromes_polygon</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="all_roads" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_line_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">all_roads</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="banks" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">banks</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="buildings" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">buildings</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="cities" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">cities</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="farms" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">farms</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="forest" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">forest</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="grassland" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">grassland</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="hamlets" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">hamlets</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="helipads" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">helipads</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="hotels" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">hotels</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="lakes" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">lakes</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="main_roads" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_line_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">main_roads</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="medical_point" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">medical_point</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="medical_polygon" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">medical_polygon</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="military" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">military</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="neighborhoods" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">neighborhoods</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="orchards" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">orchards</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="paths" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_line_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">paths</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="placenames" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">placenames</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="police_stations" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">police_stations</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="residential" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">residential</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="restaurants" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">restaurants</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="riverbanks" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_line_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">riverbanks</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="rivers" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_line_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">rivers</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="schools_point" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">schools_point</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="schools_polygon" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_polygon_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">schools_polygon</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="tracks" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_line_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">tracks</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="train_stations" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">train_stations</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+    <Layer name="villages" status="on" srs="+proj=latlong +datum=WGS84">
+        <StyleName>simple_point_style</StyleName>
+        <Datasource>
+          <Parameter name="type">postgis</Parameter>
+          <Parameter name="host">localhost</Parameter>
+          <Parameter name="dbname">REPLACEME_osm</Parameter>
+          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="password"></Parameter>
+         <Parameter name="table">villages</Parameter>
+         <Parameter name="estimate_extent">false</Parameter>
+       </Datasource>
+    </Layer>
+</Map>
