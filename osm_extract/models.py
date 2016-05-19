@@ -11,12 +11,13 @@ class Event(models.Model):
 
     bbox = models.TextField(blank=True)
     country_name = models.TextField(max_length=30, blank=True, null=True)
-    pbf_url = models.URLField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
 
+    def __str__(self):
+        return "%s" % self.name
 
 def event_post_save(instance, *args, **kwargs):
-    print "here"
-    make.delay(instance)
+    make.delay(instance.name, instance.url)
 
 
 signals.post_save.connect(event_post_save, sender=Event) 
