@@ -17,6 +17,7 @@ abort:
 endif
 
 DB=$(NAME)_osm
+SETNAME=$(NAME)
 EXPORT_DIR=/var/www/html/$(NAME)/data
 
 mk-work-dir:
@@ -177,7 +178,7 @@ KML_EXPORTS = $(SQL_EXPORTS:.sql=.kml)
 	zip $(NAME)/$@ $(NAME)/$< $(NAME)/$(basename $<).prj  $(NAME)/$(basename $<).dbf $(NAME)/$(basename $<).shx
 
 %.gpkg: %.shp
-	ogr2ogr -f GPKG $(NAME)/$@ $(NAME)/$<
+	ogr2ogr -f GPKG -t_srs crs:84 -append $(SETNAME)/$(SETNAME).gpkg $(NAME)/$<
 	
 %.sql.zip: %.sql
 	zip $(NAME)/$@ $(NAME)/$<
