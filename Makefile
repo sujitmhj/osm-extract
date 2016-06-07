@@ -158,6 +158,7 @@ POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
 SQL_ZIP_EXPORTS = $(SQL_EXPORTS:.sql=.sql.zip)
 SHP_ZIP_EXPORTS = $(SQL_EXPORTS:.sql=.shp.zip)
 GEOJSON_EXPORTS = $(SQL_EXPORTS:.sql=.json)
+GEOPACKAGE_EXPORTS = $(SQL_EXPORTS:.sql=.gpkg)
 KML_EXPORTS = $(SQL_EXPORTS:.sql=.kml)
 
 %.sql: %.pbf
@@ -175,9 +176,12 @@ KML_EXPORTS = $(SQL_EXPORTS:.sql=.kml)
 %.shp.zip: %.shp
 	zip $(NAME)/$@ $(NAME)/$< $(NAME)/$(basename $<).prj  $(NAME)/$(basename $<).dbf $(NAME)/$(basename $<).shx
 
+%.gpkg: %.shp
+	ogr2ogr -f GPKG $(NAME)/$@ $(NAME)/$<
+	
 %.sql.zip: %.sql
 	zip $(NAME)/$@ $(NAME)/$<
-
+	
 %.postgis: %.sql
 	psql -f $(NAME)/$< $(DB)
 	psql -f conf/$(basename $@)_alter.sql $(DB)
@@ -193,7 +197,7 @@ createdb:
 		psql -d $(DB) -c 'create extension hstore;'; \
 	fi
 
-all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(KML_EXPORTS) stats.js mapproxy
+all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(GEOPACKAGE_EXPORTS) $(KML_EXPORTS) stats.js mapproxy
 	cp index.html $(NAME)/
 	sed -i .bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
 	rm $(NAME)/index.html.bk
@@ -220,6 +224,7 @@ clean:
 	rm -rf $(NAME)/*.shx
 	rm -rf $(NAME)/*.prj
 	rm -rf $(NAME)/*.json
+	rm -rf $(NAME)/*.gpkg
 	rm -rf $(NAME)/*.kml
 	rm -rf $(NAME)/*.cpg
 	rm -rf $(NAME)/stats.js
