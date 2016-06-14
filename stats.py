@@ -36,7 +36,11 @@ def stats(name, files):
             download = '%s' % filename.replace(name + '/', '')
             files[extention] = ('data/%s' % filename, size, date)
             out = out + "<div class='box'>|    <a href='%s'>%s</a> <span class='size'>%s</span></div>" % (download, extention.upper(), sizeof_fmt(size))
-        
+        gpkg_filename = "%s/%s.gpkg" % (name, name)
+        gpkg_size = os.path.getsize(gpkg_filename)
+        gpkg_download = '%s' % gpkg_filename.replace(name + '/', '')
+        out = out + "<div class='box'>|    <a href='%s'>%s</a> <span class='size'>%s</span></div>" % (gpkg_download, 'GPKG', sizeof_fmt(gpkg_size))
+
         out = out + "|    %s</li>" % date
     out= out + "</ul>"
     
