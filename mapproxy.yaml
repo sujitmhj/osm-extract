@@ -176,15 +176,15 @@ caches:
     - default_grid
     sources:
     - REPLACEME_osm_neighborhoods
-  REPLACEME_osm_orchards_cache:
-    cache:
-      directory: /cache/mapproxy/layer/REPLACEME_osm_orchards/
-      directory_layout: tms
-      type: file
-    grids:
-    - default_grid
-    sources:
-    - REPLACEME_osm_orchards
+  # REPLACEME_osm_orchards_cache:
+    # cache:
+      # directory: /cache/mapproxy/layer/REPLACEME_osm_orchards/
+      # directory_layout: tms
+      # type: file
+    # grids:
+    # - default_grid
+    # sources:
+    # - REPLACEME_osm_orchards
   REPLACEME_osm_paths_cache:
     cache:
       directory: /cache/mapproxy/layer/REPLACEME_osm_paths/
@@ -357,9 +357,9 @@ layers:
   - name: REPLACEME_osm_neighborhoods
     title: Colombia OSM Neighborhoods 
     sources: [REPLACEME_osm_neighborhoods_cache]
-  - name: REPLACEME_osm_orchards
-    title: Colombia OSM Orchards 
-    sources: [REPLACEME_osm_orchards_cache]
+  # - name: REPLACEME_osm_orchards
+    # title: Colombia OSM Orchards 
+    # sources: [REPLACEME_osm_orchards_cache]
   - name: REPLACEME_osm_paths
     title: Colombia OSM Paths 
     sources: [REPLACEME_osm_paths_cache]
@@ -488,11 +488,11 @@ sources:
     mapfile: ./mapnik.xml 
     layers: [neighborhoods]
     transparent: true
-  REPLACEME_osm_orchards:
-    type: mapnik
-    mapfile: ./mapnik.xml 
-    layers: [orchards]
-    transparent: true
+  # REPLACEME_osm_orchards:
+    # type: mapnik
+    # mapfile: ./mapnik.xml 
+    # layers: [orchards]
+    # transparent: true
   REPLACEME_osm_paths:
     type: mapnik
     mapfile: ./mapnik.xml 

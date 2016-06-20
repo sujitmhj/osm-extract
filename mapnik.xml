@@ -1,15 +1,12 @@
 <Map>
     <Style name="simple_point_style">
         <Rule>
-            <PointSymbolizer file= "/Users/jj0hns0n/projects/nga-dev/osm-extract/dot.png" type="png" width="9" height="9" />
+            <PointSymbolizer file= "/var/lib/osm-extract/dot.png" />
         </Rule>
     </Style>
     <Style name="simple_line_style">
         <Rule>
-            <LineSymbolizer>
-                <CssParameter name="stroke">#999</CssParameter>
-                <CssParameter name="stroke-width">1</CssParameter>
-            </LineSymbolizer>
+            <LineSymbolizer stroke="#999" stroke-width"1" />
         </Rule>
     </Style>
     <Style name="simple_polygon_style">
@@ -23,7 +20,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">aerodromes_point</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -35,7 +32,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">aerodromes_polygon</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -47,7 +44,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">all_roads</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -59,7 +56,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">banks</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -71,7 +68,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">buildings</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -83,7 +80,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">cities</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -95,7 +92,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">farms</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -107,7 +104,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">forest</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -119,7 +116,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">grassland</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -131,7 +128,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">hamlets</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -143,7 +140,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">helipads</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -155,7 +152,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">hotels</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -167,7 +164,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">lakes</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -179,7 +176,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">main_roads</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -191,7 +188,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">medical_point</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -203,7 +200,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">medical_polygon</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -215,7 +212,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">military</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -227,31 +224,31 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">neighborhoods</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
        </Datasource>
-    </Layer>
+    </Layer><!--
     <Layer name="orchards" status="on" srs="+proj=latlong +datum=WGS84">
         <StyleName>simple_polygon_style</StyleName>
         <Datasource>
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">orchards</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
        </Datasource>
-    </Layer>
+    </Layer>-->
     <Layer name="paths" status="on" srs="+proj=latlong +datum=WGS84">
         <StyleName>simple_line_style</StyleName>
         <Datasource>
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">paths</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -263,7 +260,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">placenames</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -275,7 +272,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">police_stations</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -287,7 +284,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">residential</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -299,7 +296,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">restaurants</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -311,7 +308,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">riverbanks</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -323,7 +320,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">rivers</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -335,7 +332,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">schools_point</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -347,7 +344,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">schools_polygon</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -359,7 +356,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">tracks</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -371,7 +368,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">train_stations</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
@@ -383,7 +380,7 @@
           <Parameter name="type">postgis</Parameter>
           <Parameter name="host">localhost</Parameter>
           <Parameter name="dbname">REPLACEME_osm</Parameter>
-          <Parameter name="user">jj0hns0n</Parameter>      
+          <Parameter name="user">vagrant</Parameter>      
           <Parameter name="password"></Parameter>
          <Parameter name="table">villages</Parameter>
          <Parameter name="estimate_extent">false</Parameter>
