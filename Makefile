@@ -151,7 +151,7 @@ train_stations.pbf: latest.pbf
 helipads.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="aeroway.helipad" --used-node --write-pbf file="$(NAME)/$@"
 
-SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql riverbanks.sql lakes.sql farms.sql forest.sql grassland.sql military.sql orchards.sql residential.sql cities.sql hamlets.sql neighborhoods.sql villages.sql placenames.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql
+SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql riverbanks.sql lakes.sql farms.sql forest.sql grassland.sql military.sql residential.sql cities.sql hamlets.sql neighborhoods.sql villages.sql placenames.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql # orchards.sql
 
 EXPORTS = $(SQL_EXPORTS:.sql=)
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
@@ -200,7 +200,7 @@ createdb:
 
 all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(GEOPACKAGE_EXPORTS) $(KML_EXPORTS) stats.js mapproxy
 	cp index.html $(NAME)/
-	sed -i .bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
+	sed -i.bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
 	rm $(NAME)/index.html.bk
 
 postgis: $(POSTGIS_EXPORTS)
@@ -212,8 +212,8 @@ stats.js:
 mapproxy:
 	cp mapnik.xml $(NAME)/
 	cp mapproxy.yaml $(NAME)/
-	sed -i .bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapnik.xml
-	sed -i .bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapproxy.yaml
+	sed -i.bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapnik.xml
+	sed -i.bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapproxy.yaml
 
 .PHONY: clean
 clean:
@@ -225,7 +225,7 @@ clean:
 	rm -rf $(NAME)/*.shx
 	rm -rf $(NAME)/*.prj
 	rm -rf $(NAME)/*.json
-	rm -rf $(NAME)/*.gpkg
+	rm -rf $(SETNAME)/*.gpkg
 	rm -rf $(NAME)/*.kml
 	rm -rf $(NAME)/*.cpg
 	rm -rf $(NAME)/stats.js
