@@ -6,7 +6,7 @@
     </Style>
     <Style name="simple_line_style">
         <Rule>
-            <LineSymbolizer stroke="#999" stroke-width"1" />
+            <LineSymbolizer stroke="#999" stroke-width="1" />
         </Rule>
     </Style>
     <Style name="simple_polygon_style">
