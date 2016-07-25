@@ -199,7 +199,6 @@ createdb:
 	fi
 
 all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(POSTGIS_EXPORTS)
-	echo "POSTGIS_EXPORT" > log.txt
 #all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(GEOPACKAGE_EXPORTS) $(KML_EXPORTS) stats.js mapproxy
 #	cp index.html $(NAME)/
 #	sed -i.bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
