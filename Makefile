@@ -165,23 +165,23 @@ KML_EXPORTS = $(SQL_EXPORTS:.sql=.kml)
 %.sql: %.pbf
 	ogr2ogr -f PGDump $(NAME)/$@ $(NAME)/$< -lco COLUMN_TYPES=other_tags=hstore --config OSM_CONFIG_FILE conf/$(basename $@).ini
 
-%.shp: %.postgis
-	pgsql2shp -f $(NAME)/$(basename $@) $(DB) public.$(basename $<)
+#%.shp: %.postgis
+#	pgsql2shp -f $(NAME)/$(basename $@) $(DB) public.$(basename $<)
 
-%.json: %.shp
-	ogr2ogr -f GeoJSON -t_srs crs:84 $(NAME)/$@ $(NAME)/$<
+#%.json: %.shp
+#	ogr2ogr -f GeoJSON -t_srs crs:84 $(NAME)/$@ $(NAME)/$<
 
-%.kml: %.shp
-	ogr2ogr -f KML -t_srs crs:84 $(NAME)/$@ $(NAME)/$<
+#%.kml: %.shp
+#	ogr2ogr -f KML -t_srs crs:84 $(NAME)/$@ $(NAME)/$<
 
-%.shp.zip: %.shp
-	zip $(NAME)/$@ $(NAME)/$< $(NAME)/$(basename $<).prj  $(NAME)/$(basename $<).dbf $(NAME)/$(basename $<).shx
+#%.shp.zip: %.shp
+#	zip $(NAME)/$@ $(NAME)/$< $(NAME)/$(basename $<).prj  $(NAME)/$(basename $<).dbf $(NAME)/$(basename $<).shx
 
-%.gpkg: %.shp
-	ogr2ogr -f GPKG -t_srs crs:84 -append $(SETNAME)/$(SETNAME).gpkg $(NAME)/$<
+#%.gpkg: %.shp
+#	ogr2ogr -f GPKG -t_srs crs:84 -append $(SETNAME)/$(SETNAME).gpkg $(NAME)/$<
 	
-%.sql.zip: %.sql
-	zip $(NAME)/$@ $(NAME)/$<
+#%.sql.zip: %.sql
+#	zip $(NAME)/$@ $(NAME)/$<
 	
 %.postgis: %.sql
 	psql -f $(NAME)/$< $(DB)
@@ -198,22 +198,24 @@ createdb:
 		psql -d $(DB) -c 'create extension hstore;'; \
 	fi
 
-all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(GEOPACKAGE_EXPORTS) $(KML_EXPORTS) stats.js mapproxy
-	cp index.html $(NAME)/
-	sed -i.bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
-	rm $(NAME)/index.html.bk
+all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(POSTGIS_EXPORTS)
+	echo "POSTGIS_EXPORT" > log.txt
+#all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(SQL_ZIP_EXPORTS) $(SHP_ZIP_EXPORTS) $(GEOJSON_EXPORTS) $(GEOPACKAGE_EXPORTS) $(KML_EXPORTS) stats.js mapproxy
+#	cp index.html $(NAME)/
+#	sed -i.bk -e 's/Fiji/$(NAME)/' $(NAME)/index.html
+#	rm $(NAME)/index.html.bk
 
 postgis: $(POSTGIS_EXPORTS)
 
-stats.js: 
-	python stats.py --name="$(NAME)" --files="$(EXPORTS)" >> $(NAME)/$@
+#stats.js: 
+#	python stats.py --name="$(NAME)" --files="$(EXPORTS)" >> $(NAME)/$@
 
-.PHONY:
-mapproxy:
-	cp mapnik.xml $(NAME)/
-	cp mapproxy.yaml $(NAME)/
-	sed -i.bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapnik.xml
-	sed -i.bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapproxy.yaml
+#.PHONY:
+#mapproxy:
+#	cp mapnik.xml $(NAME)/
+#	cp mapproxy.yaml $(NAME)/
+#	sed -i.bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapnik.xml
+#	sed -i.bk -e 's/REPLACEME/$(NAME)/' $(NAME)/mapproxy.yaml
 
 .PHONY: clean
 clean:
