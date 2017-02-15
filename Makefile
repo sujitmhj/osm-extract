@@ -33,17 +33,21 @@ latest.pbf: mk-work-dir
 buildings.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "building=*"  --write-pbf file="$(NAME)/$@"
 
-bridges.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "bridge=*"  --write-pbf file="$(NAME)/$@"
+# commented out because not deemed useful at the moment
+#bridges.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "bridge=*"  --write-pbf file="$(NAME)/$@"
 
-idp_camps.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="idp:camp_site=spontaneous_camp,damage:event.dominica_earthquake_2015" --used-node  --write-pbf  file="$(NAME)/$@"
+# skipped because not useful for Malawi
+#idp_camps.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="idp:camp_site=spontaneous_camp,damage:event.dominica_earthquake_2015" --used-node  --write-pbf  file="$(NAME)/$@"
 
-huts.pbf: buildings.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways "building=hut" --used-node --write-pbf file="$(NAME)/$@"
+# commented out because not extracted at the moment
+#huts.pbf: buildings.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways "building=hut" --used-node --write-pbf file="$(NAME)/$@"
 
-trees.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "natural=tree" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
+# commented out because currently not extracted
+#trees.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "natural=tree" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
 schools_point.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="amenity.school,amenity.university,amenity.college,amenity.kindergarten" --write-pbf file="$(NAME)/$@"
@@ -70,8 +74,9 @@ rivers.pbf: latest.pbf
 lakes.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="natural.water,water.lake" --used-node --write-pbf file="$(NAME)/$@"
 
-beaches.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="natural.beach" --used-node --write-pbf file="$(NAME)/$@"
+#commented out because currently is not extracted
+#beaches.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="natural.beach" --used-node --write-pbf file="$(NAME)/$@"
 
 farms.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.farm,landuse.farmland,landuse.farmyard" --used-node --write-pbf file="$(NAME)/$@"
@@ -86,8 +91,9 @@ grassland.pbf: latest.pbf
 #military.pbf: latest.pbf
 #	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=military" --used-node --write-pbf file="$(NAME)/$@"
 #
-orchards.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=orchard" --used-node --write-pbf file="$(NAME)/$@"
+# commented out because not extracted at the moment
+#orchards.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=orchard" --used-node --write-pbf file="$(NAME)/$@"
 
 railways.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways "railway=*" --used-node --write-pbf file="$(NAME)/$@"
@@ -95,11 +101,13 @@ railways.pbf: latest.pbf
 residential.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways "landuse=residential" --used-node --write-pbf file="$(NAME)/$@"
 
-village_green.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=village_green" --used-node --write-pbf file="$(NAME)/$@"
-
-wetlands.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=wetland" --used-node --write-pbf file="$(NAME)/$@"
+# commented out because not extracted currently
+#village_green.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=village_green" --used-node --write-pbf file="$(NAME)/$@"
+#
+# not extracted at the moment
+#wetlands.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=wetland" --used-node --write-pbf file="$(NAME)/$@"
 
 all_places.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="place.city,place.borough,place.suburb,place.quarter,place.neighborhood,place.neighbourhood,place.city_block,place.plot,place.town,place.village,place.hamlet,place.isolated_dwelling,place.farm,place.allotments" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
@@ -140,9 +148,10 @@ aerodromes_polygon.pbf: latest.pbf
 banks.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "amenity=bank" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
-fire_stations.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "amenity=fire_station" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
-
+# commented out because non extracted at the moment
+#fire_stations.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "amenity=fire_station" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
+#
 hotels.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="tourism.hotel,amenity.hotel" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
 
@@ -158,7 +167,7 @@ train_stations.pbf: latest.pbf
 helipads.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="aeroway.helipad" --used-node --write-pbf file="$(NAME)/$@"
 
-SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql railways.sql lakes.sql farms.sql forest.sql grassland.sql residential.sql all_places.sql cities.sql towns.sql villages.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql # orchards.sql
+SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql railways.sql lakes.sql farms.sql forest.sql grassland.sql residential.sql all_places.sql cities.sql towns.sql villages.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql
 
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
