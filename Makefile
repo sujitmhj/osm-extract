@@ -63,9 +63,10 @@ all_roads.pbf: latest.pbf
 rivers.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="waterway.river,waterway.stream,waterway.ditch" --used-node --write-pbf file="$(NAME)/$@"
 
-riverbanks.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="waterway.riverbank" --used-node --write-pbf file="$(NAME)/$@"
-
+# commented out becasue table is empty in malawi
+#riverbanks.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="waterway.riverbank" --used-node --write-pbf file="$(NAME)/$@"
+#
 lakes.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="natural.water,water.lake" --used-node --write-pbf file="$(NAME)/$@"
 
@@ -81,9 +82,10 @@ forest.pbf: latest.pbf
 grassland.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.grass,landuse.grassland,natural.wood,natural.grassland" --used-node --write-pbf file="$(NAME)/$@"
 
-military.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=military" --used-node --write-pbf file="$(NAME)/$@"
-
+# removed because empty
+#military.pbf: latest.pbf
+#	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=military" --used-node --write-pbf file="$(NAME)/$@"
+#
 orchards.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=orchard" --used-node --write-pbf file="$(NAME)/$@"
 
@@ -156,7 +158,7 @@ train_stations.pbf: latest.pbf
 helipads.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="aeroway.helipad" --used-node --write-pbf file="$(NAME)/$@"
 
-SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql railways.sql riverbanks.sql lakes.sql farms.sql forest.sql grassland.sql military.sql residential.sql all_places.sql cities.sql towns.sql villages.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql # orchards.sql
+SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql railways.sql lakes.sql farms.sql forest.sql grassland.sql residential.sql all_places.sql cities.sql towns.sql villages.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql restaurants.sql train_stations.sql helipads.sql # orchards.sql
 
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
