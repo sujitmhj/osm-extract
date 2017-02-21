@@ -30,24 +30,32 @@ latest.pbf: mk-work-dir
         mv $(NAME)/$@.temp $(NAME)/$@; \
     fi
 
+aerodromes_point.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="aeroway.aerodrome" --write-pbf file="$(NAME)/$@"
+
+aerodromes_polygon.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<"  --wkv keyValueList="aeroway.aerodrome" --used-node --write-pbf file="$(NAME)/$@"
+
+all_places.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="place.city,place.borough,place.suburb,place.quarter,place.neighbourhood,place.city_block,place.plot,place.town,place.village,place.hamlet,place.isolated_dwelling,place.farm,place.allotments" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
+
+all_roads.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "highway=*" --used-node --write-pbf file="$(NAME)/$@"
+
+banks.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes amenity=bank,atm,bureau_de_change --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
+
 buildings.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "building=*"  --write-pbf file="$(NAME)/$@"
 
-# commented out because not deemed useful at the moment
-#bridges.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "bridge=*"  --write-pbf file="$(NAME)/$@"
+farms.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.farm,landuse.farmland,landuse.farmyard,landuse.livestock" --used-node --write-pbf file="$(NAME)/$@"
 
-# skipped because not useful for Malawi
-#idp_camps.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="idp:camp_site=spontaneous_camp,damage:event.dominica_earthquake_2015" --used-node  --write-pbf  file="$(NAME)/$@"
+forest.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.forest,natural.wood" --used-node --write-pbf file="$(NAME)/$@"
 
-# commented out because not extracted at the moment
-#huts.pbf: buildings.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways "building=hut" --used-node --write-pbf file="$(NAME)/$@"
-
-# commented out because currently not extracted
-#trees.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "natural=tree" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
+grassland.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.grass,landuse.meadow,landuse.scrub,landuse.village_green,natural.scrub,natural.heath,natural.grassland" --used-node --write-pbf file="$(NAME)/$@"
 
 schools_point.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="amenity.school,amenity.university,amenity.college,amenity.kindergarten" --write-pbf file="$(NAME)/$@"
@@ -61,31 +69,11 @@ medical_point.pbf: latest.pbf
 medical_polygon.pbf: buildings.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="amenity.hospital,amenity.doctors,amenity.doctor,amenity.clinic,amenity.health_post" --used-node --write-pbf file="$(NAME)/$@"
 
-all_roads.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "highway=*" --used-node --write-pbf file="$(NAME)/$@"
-
 rivers.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="waterway.river,waterway.stream,waterway.ditch" --used-node --write-pbf file="$(NAME)/$@"
 
-# commented out becasue table is empty in malawi
-#riverbanks.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="waterway.riverbank" --used-node --write-pbf file="$(NAME)/$@"
-#
 lakes.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="natural.water,water.lake" --used-node --write-pbf file="$(NAME)/$@"
-
-#commented out because currently is not extracted
-#beaches.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="natural.beach" --used-node --write-pbf file="$(NAME)/$@"
-
-farms.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.farm,landuse.farmland,landuse.farmyard" --used-node --write-pbf file="$(NAME)/$@"
-
-forest.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.forest" --used-node --write-pbf file="$(NAME)/$@"
-
-grassland.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.grass,landuse.grassland,natural.wood,natural.grassland" --used-node --write-pbf file="$(NAME)/$@"
 
 # removed because empty
 #military.pbf: latest.pbf
@@ -108,9 +96,6 @@ residential.pbf: latest.pbf
 # not extracted at the moment
 #wetlands.pbf: latest.pbf
 #	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-ways "landuse=wetland" --used-node --write-pbf file="$(NAME)/$@"
-
-all_places.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="place.city,place.borough,place.suburb,place.quarter,place.neighborhood,place.neighbourhood,place.city_block,place.plot,place.town,place.village,place.hamlet,place.isolated_dwelling,place.farm,place.allotments" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
 cities.pbf: all_places.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=city" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
@@ -138,15 +123,6 @@ paths.pbf: all_roads.pbf
 
 tracks.pbf: all_roads.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --wkv keyValueList="highway.track" --used-node --write-pbf file="$(NAME)/$@"
-
-aerodromes_point.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="aeroway.aerodrome,aeroway.international" --write-pbf file="$(NAME)/$@"
-
-aerodromes_polygon.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --wkv keyValueList="aeroway.aerodrome,aeroway.international" --used-node --write-pbf file="$(NAME)/$@"
-
-banks.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "amenity=bank" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
 # commented out because non extracted at the moment
 #fire_stations.pbf: latest.pbf
