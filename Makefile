@@ -100,19 +100,28 @@ railways.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways "railway=*" --used-node --write-pbf file="$(NAME)/$@"
 
 schools_point.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="amenity.school,amenity.university,amenity.college,amenity.kindergarten" --write-pbf file="$(NAME)/$@"
+	osmosis --read-pbf-fast file="$(NAME)/$<" \
+	--nkv keyValueList="amenity.school,amenity.university,amenity.college,amenity.kindergarten,amenity.library,amenity.public_bookcase,amenity.music_school,amenity.driving_school,amenity.language_school" \
+	--write-pbf file="$(NAME)/$@"
 
 schools_polygon.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="amenity.school,amenity.university,amenity.college,amenity.kindergarten" --used-node --write-pbf file="$(NAME)/$@"
+	osmosis --read-pbf-fast file="$(NAME)/$<" \
+	--wkv keyValueList="amenity.school,amenity.university,amenity.college,amenity.kindergarten,amenity.library,amenity.public_bookcase,amenity.music_school,amenity.driving_school,amenity.language_school" \
+	--used-node --write-pbf file="$(NAME)/$@"
 
 towns.pbf: all_places.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=town" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
 
-villages.pbf: all_places.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=village" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
-
 tracks.pbf: all_roads.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --wkv keyValueList="highway.track" --used-node --write-pbf file="$(NAME)/$@"
+
+utilities.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --tf reject-ways --tf reject-relations \
+	--tf accept-nodes amenity=shower,toilets,water_point,drinking_water,water_in_place \
+	--write-pbf file="$(NAME)/$@"
+
+villages.pbf: all_places.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=village" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
 #restaurants.pbf: latest.pbf
 #	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="amenity.restaurant,amenity.restaurants" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
@@ -120,7 +129,12 @@ tracks.pbf: all_roads.pbf
 train_stations.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "railway=station" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
 
-SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql inland_water_line.sql railways.sql inland_water_polygon.sql farms.sql forest.sql grassland.sql built_up_areas.sql all_places.sql cities.sql towns.sql villages.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql train_stations.sql helipads.sql
+SQL_EXPORTS = aerodromes_point.sql aerodromes_polygon.sql all_places.sql \
+all_roads.sql banks.sql buildings.sql built_up_areas.sql cities.sql farms.sql \
+forest.sql grassland.sql helipads.sql hotels.sql inland_water_line.sql \
+inland_water_polygon.sql main_roads.sql medical_point.sql medical_polygon.sql \
+paths.sql police_stations.sql railways.sql schools_point.sql schools_polygon.sql \
+towns.sql tracks.sql train_stations.sql utilities.sql villages.sql
 
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
