@@ -1,2 +1,2 @@
-DROP TABLE IF EXISTS rivers;
-CREATE TABLE rivers AS SELECT * FROM lines;
+DROP TABLE IF EXISTS inland_water_line;
+CREATE TABLE inland_water_line AS SELECT * FROM lines;
