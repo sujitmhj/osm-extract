@@ -120,7 +120,7 @@ tracks.pbf: all_roads.pbf
 train_stations.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "railway=station" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
 
-SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql rivers.sql railways.sql inland_water_polygon.sql farms.sql forest.sql grassland.sql built_up_areas.sql all_places.sql cities.sql towns.sql villages.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql train_stations.sql helipads.sql
+SQL_EXPORTS = buildings.sql schools_point.sql schools_polygon.sql medical_point.sql medical_polygon.sql inland_water_line.sql railways.sql inland_water_polygon.sql farms.sql forest.sql grassland.sql built_up_areas.sql all_places.sql cities.sql towns.sql villages.sql all_roads.sql main_roads.sql paths.sql tracks.sql aerodromes_point.sql aerodromes_polygon.sql banks.sql  hotels.sql police_stations.sql train_stations.sql helipads.sql
 
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
