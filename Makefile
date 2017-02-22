@@ -51,6 +51,9 @@ buildings.pbf: latest.pbf
 built_up_areas.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways landuse=residential,allotments,cemetery,construction,depot,garages,brownfield,commercial,industrial,retail --used-node --write-pbf file="$(NAME)/$@"
 
+cities.pbf: all_places.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=city" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
+
 farms.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="landuse.farm,landuse.farmland,landuse.farmyard,landuse.livestock" --used-node --write-pbf file="$(NAME)/$@"
 
@@ -66,11 +69,17 @@ helipads.pbf: latest.pbf
 hotels.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="tourism.hotel,tourism.hostel,tourism.motel,tourism.guest_house" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
+main_roads.pbf: all_roads.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="highway.motorway,highway.trunk,highway.primary" --used-node --write-pbf file="$(NAME)/$@"
+
 medical_point.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="amenity.baby_hatch,amenity.clinic,amenity.dentist,amenity.doctors,amenity.hospital,amenity.nursing_home,amenity.pharmacy,amenity.social_facility,amenity.veterinary,amenity.blood_donation" --write-pbf file="$(NAME)/$@"
 
 medical_polygon.pbf: buildings.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="amenity.baby_hatch,amenity.clinic,amenity.dentist,amenity.doctors,amenity.hospital,amenity.nursing_home,amenity.pharmacy,amenity.social_facility,amenity.veterinary,amenity.blood_donation" --used-node --write-pbf file="$(NAME)/$@"
+
+paths.pbf: all_roads.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="highway.footway,highway.bridleway,highway.steps,highway.path" --used-node  --write-pbf file="$(NAME)/$@"
 
 police_stations.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="amenity.police" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
@@ -90,26 +99,11 @@ lakes.pbf: latest.pbf
 railways.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-ways "railway=*" --used-node --write-pbf file="$(NAME)/$@"
 
-cities.pbf: all_places.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=city" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
-
 towns.pbf: all_places.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=town" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
 
 villages.pbf: all_places.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=village" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
-
-#placenames.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="place.city,place.hamlet,place.neighborhood,place.neighbourhood,place.village" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
-
-#all_roads.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="highway.unclassified,highway.tertiary,highway.residential,highway.service,highway.secondary,highway.track,highway.footway,highway.path,highway.classified,highway.primary,highway.trunk,highway.motorway,highway.construction,highway.proposed,highway.cycleway,highway.living_street,highway.steps,highway.road,highway.pedestrian,highway.construction,highway.bridleway,highway.platformhighway.proposed" --used-node --write-pbf file="$(NAME)/$@"
-
-main_roads.pbf: all_roads.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="highway.motorway,highway.trunk,highway.primary" --used-node --write-pbf file="$(NAME)/$@"
-
-paths.pbf: all_roads.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="highway.footway,highway.bridleway,highway.steps,highway.path" --used-node  --write-pbf file="$(NAME)/$@"
 
 tracks.pbf: all_roads.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --wkv keyValueList="highway.track" --used-node --write-pbf file="$(NAME)/$@"
