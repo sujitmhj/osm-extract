@@ -71,15 +71,14 @@ hotels.pbf: latest.pbf
 
 inland_water_line.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" \
-	--tf reject-nodes --tf reject-relations --tf accept-ways waterway=* \
+	--tf reject-relations --tf accept-ways waterway=* --used-node \
 	--write-pbf file="$(NAME)/$@"
 
 inland_water_polygon.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" \
 	--tf accept-ways natural=water,wetland,bay landuse=reservoir,basin,salt_pond waterway=river,riverbank \
 	--tf accept-relations natural=water,wetland,bay landuse=reservoir,basin,salt_pond waterway=river,riverbank \
-	--tf reject-nodes \
-	--write-pbf file="$(NAME)/$@"
+	--used-node	--write-pbf file="$(NAME)/$@"
 
 main_roads.pbf: all_roads.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --wkv keyValueList="highway.motorway,highway.trunk,highway.primary" --used-node --write-pbf file="$(NAME)/$@"
