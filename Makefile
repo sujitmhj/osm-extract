@@ -114,6 +114,12 @@ towns.pbf: all_places.pbf
 tracks.pbf: all_roads.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --wkv keyValueList="highway.track" --used-node --write-pbf file="$(NAME)/$@"
 
+transport_point.pbf: latest.pbf
+	osmosis --read-pbf-fast file="$(NAME)/$<" \
+	--tf accept-nodes amenity=bicycle_parking,bicycle_repair_station,bicycle_rental,boat_sharing,bus_station,car_rental,car_sharing,car_wash,charging_station,ferry_terminal,fuel,grit_brin,motorcycle_parking,parking,parking_entrance,parking_space,taxi \
+	public_transport=* railway=halt,station,subway_entrance,tram_stop waterway=dock,boatyard \
+	--tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
+
 utilities.pbf: latest.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<" --tf reject-ways --tf reject-relations \
 	--tf accept-nodes amenity=shower,toilets,water_point,drinking_water,water_in_place \
@@ -122,18 +128,12 @@ utilities.pbf: latest.pbf
 villages.pbf: all_places.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=village" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
-#restaurants.pbf: latest.pbf
-#	osmosis --read-pbf-fast file="$(NAME)/$<" --nkv keyValueList="amenity.restaurant,amenity.restaurants" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
-#
-train_stations.pbf: latest.pbf
-	osmosis --read-pbf-fast file="$(NAME)/$<" --tf accept-nodes "railway=station" --tf reject-ways --tf reject-relations  --write-pbf file="$(NAME)/$@"
-
 SQL_EXPORTS = aerodromes_point.sql aerodromes_polygon.sql all_places.sql \
 all_roads.sql banks.sql buildings.sql built_up_areas.sql cities.sql farms.sql \
 forest.sql grassland.sql helipads.sql hotels.sql inland_water_line.sql \
 inland_water_polygon.sql main_roads.sql medical_point.sql medical_polygon.sql \
 paths.sql police_stations.sql railways.sql schools_point.sql schools_polygon.sql \
-towns.sql tracks.sql train_stations.sql utilities.sql villages.sql
+towns.sql tracks.sql transport_point.sql utilities.sql villages.sql
 
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
