@@ -1,2 +1,0 @@
-DROP TABLE IF EXISTS towns;
-CREATE TABLE towns AS SELECT * FROM points;
