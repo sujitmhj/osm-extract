@@ -135,6 +135,8 @@ inland_water_polygon.sql main_roads.sql medical_point.sql medical_polygon.sql \
 paths.sql police_stations.sql railways.sql schools_point.sql schools_polygon.sql \
 towns.sql tracks.sql transport_point.sql utilities.sql villages.sql
 
+# SQL_EXPORTS = banks.sql
+
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
 
@@ -142,18 +144,18 @@ POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
 	ogr2ogr -f PGDump $(NAME)/$@ $(NAME)/$< -lco COLUMN_TYPES=other_tags=hstore --config OSM_CONFIG_FILE conf/$(basename $@).ini
 
 %.postgis: %.sql
-	psql -f $(NAME)/$< $(DB)
-	psql -f conf/$(basename $@)_alter.sql $(DB)
-	psql -f conf/clean.sql -q $(DB)
+	psql -U postgres -h db -f $(NAME)/$< $(DB)
+	psql -U postgres -h db -f conf/$(basename $@)_alter.sql $(DB)
+	psql -U postgres -h db -f conf/clean.sql -q $(DB)
 
 .PHONY: createdb
 createdb:
-	if psql -lqt | cut -d \| -f 1 | grep -w $(DB); then \
+	if psql -U postgres -h db -lqt | cut -d \| -f 1 | grep -w $(DB); then \
 		echo "Database exists"; \
 	else \
-		createdb $(DB); \
-		psql -d $(DB) -c 'create extension postgis;'; \
-		psql -d $(DB) -c 'create extension hstore;'; \
+		psql -U postgres -h db -c 'create database $(DB);'; \
+		psql -U postgres -h db -d $(DB) -c 'create extension postgis;'; \
+		psql -U postgres -h db -d $(DB) -c 'create extension hstore;'; \
 	fi
 
 all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(POSTGIS_EXPORTS)
@@ -164,6 +166,6 @@ postgis: $(POSTGIS_EXPORTS)
 clean:
 	rm -rf $(NAME)/*.pbf
 	rm -rf $(NAME)/*.sql
-	if psql -lqt | cut -d \| -f 1 | grep -w $(DB); then \
-		psql -f conf/clean.sql -q $(DB); \
+	if psql -U postgres -h db -lqt | cut -d \| -f 1 | grep -w $(DB); then \
+		psql -U postgres -h db -f conf/clean.sql -q $(DB); \
 	fi
