@@ -128,14 +128,14 @@ utilities.pbf: latest.pbf
 villages.pbf: all_places.pbf
 	osmosis --read-pbf-fast file="$(NAME)/$<"  --tf accept-nodes "place=village" --tf reject-ways --tf reject-relations --write-pbf file="$(NAME)/$@"
 
-# SQL_EXPORTS = aerodromes_point.sql aerodromes_polygon.sql all_places.sql \
-# all_roads.sql banks.sql buildings.sql built_up_areas.sql cities.sql farms.sql \
-# forest.sql grassland.sql helipads.sql hotels.sql inland_water_line.sql \
-# inland_water_polygon.sql main_roads.sql medical_point.sql medical_polygon.sql \
-# paths.sql police_stations.sql railways.sql schools_point.sql schools_polygon.sql \
-# towns.sql tracks.sql transport_point.sql utilities.sql villages.sql
+SQL_EXPORTS = aerodromes_point.sql aerodromes_polygon.sql all_places.sql \
+all_roads.sql banks.sql buildings.sql built_up_areas.sql cities.sql farms.sql \
+forest.sql grassland.sql helipads.sql hotels.sql inland_water_line.sql \
+inland_water_polygon.sql main_roads.sql medical_point.sql medical_polygon.sql \
+paths.sql police_stations.sql railways.sql schools_point.sql schools_polygon.sql \
+towns.sql tracks.sql transport_point.sql utilities.sql villages.sql
 
-SQL_EXPORTS = all_roads.sql
+# SQL_EXPORTS = banks.sql
 
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
