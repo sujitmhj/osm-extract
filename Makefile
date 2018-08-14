@@ -134,8 +134,8 @@ forest.sql grassland.sql helipads.sql hotels.sql inland_water_line.sql \
 inland_water_polygon.sql main_roads.sql medical_point.sql medical_polygon.sql \
 paths.sql police_stations.sql railways.sql schools_point.sql schools_polygon.sql \
 towns.sql tracks.sql transport_point.sql utilities.sql villages.sql \
-residential.sql lakes.sql neighborhoods.sql riverbanks.sql \
-rivers.sql restaurants.sql train_stations.sql hamlets.sql
+# residential.sql lakes.sql neighborhoods.sql riverbanks.sql \
+# rivers.sql restaurants.sql train_stations.sql hamlets.sql
 
 # SQL_EXPORTS = banks.sql
 
