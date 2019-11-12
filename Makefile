@@ -146,18 +146,18 @@ POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
 	ogr2ogr -f PGDump $(NAME)/$@ $(NAME)/$< -lco COLUMN_TYPES=other_tags=hstore --config OSM_CONFIG_FILE conf/$(basename $@).ini
 
 %.postgis: %.sql
-	psql -U postgres -h localhost -f $(NAME)/$< $(DB)
-	psql -U postgres -h localhost -f conf/$(basename $@)_alter.sql $(DB)
-	psql -U postgres -h localhost -f conf/clean.sql -q $(DB)
+	psql -U geonode -h localhost -f $(NAME)/$< $(DB)
+	psql -U geonode -h localhost -f conf/$(basename $@)_alter.sql $(DB)
+	psql -U geonode -h localhost -f conf/clean.sql -q $(DB)
 
 .PHONY: createdb
 createdb:
-	if psql -U postgres -h localhost -lqt | cut -d \| -f 1 | grep -w $(DB); then \
+	if psql -U geonode -h localhost -lqt | cut -d \| -f 1 | grep -w $(DB); then \
 		echo "Database exists"; \
 	else \
-		psql -U postgres -h localhost -c 'create database $(DB);'; \
-		psql -U postgres -h localhost -d $(DB) -c 'create extension postgis;'; \
-		psql -U postgres -h localhost -d $(DB) -c 'create extension hstore;'; \
+		psql -U geonode -h localhost -c 'create database $(DB);'; \
+		psql -U geonode -h localhost -d $(DB) -c 'create extension postgis;'; \
+		psql -U geonode -h localhost -d $(DB) -c 'create extension hstore;'; \
 	fi
 
 all: createdb $(PBF_EXPORTS) $(SQL_EXPORTS) $(POSTGIS_EXPORTS)
@@ -168,6 +168,6 @@ postgis: $(POSTGIS_EXPORTS)
 clean:
 	rm -rf $(NAME)/*.pbf
 	rm -rf $(NAME)/*.sql
-	if psql -U postgres -h localhost -lqt | cut -d \| -f 1 | grep -w $(DB); then \
-		psql -U postgres -h localhost -f conf/clean.sql -q $(DB); \
+	if psql -U geonode -h localhost -lqt | cut -d \| -f 1 | grep -w $(DB); then \
+		psql -U geonode -h localhost -f conf/clean.sql -q $(DB); \
 	fi
