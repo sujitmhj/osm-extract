@@ -139,6 +139,8 @@ towns.sql tracks.sql transport_point.sql utilities.sql villages.sql
 
 # SQL_EXPORTS = banks.sql
 
+SQL_EXPORTS = aerodromes_point.sql
+
 PBF_EXPORTS = $(SQL_EXPORTS:.sql=.pbf)
 POSTGIS_EXPORTS = $(SQL_EXPORTS:.sql=.postgis)
 
