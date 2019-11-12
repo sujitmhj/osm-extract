@@ -2,9 +2,9 @@
 
 NAME=nepal
 
-cd /usr/src/osm-extract
+cd /opt/osm-extract/osm-extract
 echo $(date)
-make all NAME=$NAME URL="http://download.geofabrik.de/asia/nepal-latest.osm.pbf" && psql -U postgres -h db -d npl_geo -f set_pub_date.sql
+make all NAME=$NAME URL="http://download.geofabrik.de/asia/nepal-latest.osm.pbf" && psql -U geonode -h localhost -d nepal_osm -f set_pub_date.sql
 echo $(date)
-rm -rf $NAME/*.pbf
+rm -rf $NAME/*.pbfs
 rm -rf $NAME/*.sql
